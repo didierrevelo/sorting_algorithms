@@ -4,6 +4,7 @@
  * of integers in ascending order using the buble sort.
  *@array: sorting array
  *@size: size of array
+ *Return: void
  */
 void bubble_sort(int *array, size_t size)
 {
