@@ -5,7 +5,7 @@
  */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *i, *nex, *pre, *pre1, *tem, *l, *r;
+	listint_t *i, *nex, *pre, *pre1, *tem, *lis, *run;
 
 	if (list == NULL)
 		return;
@@ -19,19 +19,19 @@ void insertion_sort_list(listint_t **list)
 			pre1 = pre;
 			if (pre->n > i->n)
 			{
-				l = pre;
-				r = i;
-				tem = l->prev;
+				lis = pre;
+				run = i;
+				tem = lis->prev;
 				if (tem)
-					tem->next = r;
-				r->prev = tem;
-				l->prev = r;
-				l->next = r->next;
-				r->next = l;
-				if (l->next != NULL)
-					l->next->prev = l;
-				if (r->prev == NULL)
-					*list = r;
+					tem->next = run;
+				run->prev = tem;
+				lis->prev = run;
+				lis->next = run->next;
+				run->next = lis;
+				if (lis->next != NULL)
+					lis->next->prev = lis;
+				if (run->prev == NULL)
+					*list = run;
 				print_list(*list);
 			}
 			i = pre1;
