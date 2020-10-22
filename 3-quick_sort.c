@@ -1,63 +1,63 @@
 #include "sort.h"
 
 /**
-* partition - Lomutu partition scheme for quicksort algorithm
+* part - Lomutu part scheme for quicksort algorithm
 * @a: Array to sort
 * @l: lowest index of array
 * @h: highest index of array
 * Return: index of pivot
 */
 
-int partition(int *a, int l, int h)
+int part(int *a, int l, int h)
 {
-	int p, i, j, t;
-	static int size, k;
+	int hi, x, f, Z;
+	static int size, g;
 
-	if (k == 0)
-		size = h + 1, k++;
-	p = a[h];
-	i = l;
-	for (j = l; j < h; j++)
+	if (g == 0)
+		size = h + 1, g++;
+	hi = a[h];
+	x = l;
+	for (f = l; f < h; f++)
 	{
-		if (a[j] <= p)
+		if (a[f] <= hi)
 		{
-			if (i != j)
+			if (x != f)
 			{
-				t = a[i];
-				a[i] = a[j];
-				a[j] = t;
+				Z = a[x];
+				a[x] = a[f];
+				a[f] = Z;
 				print_array(a, size);
 			}
-			i++;
+			x++;
 		}
 	}
-	if (i != h)
+	if (x != h)
 	{
-		t = a[i];
-		a[i] = a[h];
-		a[h] = t;
+		Z = a[x];
+		a[x] = a[h];
+		a[h] = Z;
 		print_array(a, size);
 	}
 
-	return (i);
+	return (x);
 }
 
 /**
-* qs - Quicksort recurssive function
+* sort - Quicksort recurssive function
 * @a: array to sort
 * @l: lowest index
 * @h: highest index
 */
 
-void qs(int *a, int l, int h)
+void sort(int *a, int l, int h)
 {
-	int p;
+	int hi;
 
 	if (l < h)
 	{
-		p = partition(a, l, h);
-		qs(a, l, p - 1);
-		qs(a, p + 1, h);
+		hi = part(a, l, h);
+		sort(a, l, hi - 1);
+		sort(a, hi + 1, h);
 	}
 }
 
@@ -72,5 +72,5 @@ void quick_sort(int *array, size_t size)
 {
 	if (array == NULL)
 		return;
-	qs(array, 0, size - 1);
+	sort(array, 0, size - 1);
 }
